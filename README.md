@@ -1,0 +1,1 @@
+Project used to follow a course from http://www.cursoangularjs.es/
