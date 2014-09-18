@@ -1,6 +1,6 @@
 var app=angular.module("myApp",[]);
   
-function SeguroController($scope) {
+app.controller('SeguroController', function($scope) {
 	$scope.seguro={
 	    nif:"",
 	    nombre:"",
