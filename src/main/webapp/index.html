@@ -16,14 +16,14 @@
           <label for="sexo">Sexo:</label><select id="sexo" name="sexo" type="checkbox" ng-model="seguro.sexo" ><option value="">--Elige opcion--</option><option value="H">Hombre</option><option value="M">Mujer</option></select><br>
           <label for="casado">Casado:</label><input id="casado" name="casado" type="checkbox" ng-model="seguro.casado" /><br>
           <label for="numHijos">Nº Hijos:</label><input id="numHijos" name="numHijos" type="text" ng-model="seguro.numHijos" /><br>
-          <label for="embarazada">Embarazada:</label><input id="embarazada" name="embarazada" type="checkbox" ng-model="seguro.embarazada" /><br>
+          <label for="embarazada" ng-show="seguro.sexo==='M'">Embarazada:</label><input id="embarazada" ng-show="seguro.sexo==='M'" name="embarazada" type="checkbox" ng-model="seguro.embarazada" /><br  ng-show="seguro.sexo==='M'">
           <label for="fechaCreacion">Fecha de creaci&oacute;n:</label><input id="fechaCreacion" name="fechaCreacion" type="text" ng-model="seguro.fechaCreacion" /><br>
       </fieldset>
       <fieldset>
         <legend>Coberturas</legend>
           <label for="oftalmologia">Oftalmologia:</label><input id="oftalmologia" name="oftalmologia" type="checkbox" ng-model="seguro.coberturas.oftalmologia" /><br>
           <label for="dental">Dental:</label><input id="dental" name="dental" type="checkbox" ng-model="seguro.coberturas.dental" /><br>
-          <label for="fecundacionInVitro">Fecundacion In Vitro:</label><input id="fecundacionInVitro" name="fecundacionInVitro" type="checkbox" ng-model="seguro.coberturas.fecundacionInVitro" /><br>
+          <label for="fecundacionInVitro"  ng-show="seguro.sexo==='M'">Fecundacion In Vitro:</label><input id="fecundacionInVitro" ng-show="seguro.sexo==='M'" name="fecundacionInVitro" type="checkbox" ng-model="seguro.coberturas.fecundacionInVitro" /><br>
       </fieldset>      
       <fieldset>
       <legend>Enfermedades</legend>
@@ -31,7 +31,7 @@
           <label for="estomacal">Estomacal:</label><input id="estomacal" name="estomacal" type="checkbox" ng-model="seguro.enfermedades.estomacal" /><br>
           <label for="rinyones">Ri&ntilde;ones:</label><input id="rinyones" name="rinyones" type="checkbox" ng-model="seguro.enfermedades.rinyones" /><br>
           <label for="alergia">Alergia:</label><input id="alergia" name="alergia" type="checkbox" ng-model="seguro.enfermedades.alergia" /><br>
-          <label for="nombreAlergia">Nombre de la alergia:</label><input id="nombreAlergia" name="nombreAlergia" type="text" ng-model="seguro.enfermedades.nombreAlergia" /><br>
+          <label for="nombreAlergia">Nombre de la alergia:</label><input id="nombreAlergia" name="nombreAlergia" type="text" ng-disabled="seguro.enfermedades.alergia===false" ng-model="seguro.enfermedades.nombreAlergia" /><br>
       </fieldset> 
     </form>
 </body>
