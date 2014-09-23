@@ -1,6 +1,7 @@
 var app=angular.module("myApp",[]);
-  
-app.controller('SeguroController', function($scope) {
+
+//['$scope', '$log',function($scope, $log)....] needed because minimize will change to function(a, b) and Angular need to know the name of the service
+app.controller('SeguroController', ['$scope', '$log', function($scope, $log) {
 	$scope.seguro={
 	    nif:"",
 	    nombre:"",
@@ -24,4 +25,5 @@ app.controller('SeguroController', function($scope) {
 	      nombreAlergia:""
 	    }
 	}
-}
+    $log.debug("Acabamos de crear el $scope");
+}]);
