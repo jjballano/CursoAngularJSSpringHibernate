@@ -1,7 +1,7 @@
 var app=angular.module("myApp",[]);
 
 //['$scope', '$log',function($scope, $log)....] needed because minimize will change to function(a, b) and Angular need to know the name of the service
-app.controller('SeguroController', ['$scope', '$log', function($scope, $log) {
+app.controller('SeguroController', ['$scope', '$log', '$http', function($scope, $log, $http) {
 	$scope.seguro={
 	    nif:"",
 	    nombre:"",
@@ -26,4 +26,12 @@ app.controller('SeguroController', ['$scope', '$log', function($scope, $log) {
 	    }
 	}
     $log.debug("Acabamos de crear el $scope");
+    var initData = $http({
+        method: 'GET',
+        url: './data.json'
+    }).success(function(data, status, headers, config){
+        $scope.seguro = data;
+    }).error(function(data, status, headers, config) {
+        alert("Ha fallado la petición. Estado HTTP:"+status);
+    });
 }]);
