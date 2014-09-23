@@ -1,0 +1,55 @@
+<html ng-app="exercise2">
+<head>
+	<title>Module 2 exercise</title>
+	<script type="text/javascript" src="../../js/vendor/angular.min.js" ></script>
+	<script type="text/javascript" src="../js/script.js" ></script>
+</head>
+
+<style>
+    input {
+        display: block;
+    }
+    input[type='radio'] {
+        display: inline;
+    }
+    hr{
+        width: 40%;
+        margin: 15px 0px;
+    }
+</style>
+
+<body  ng-controller="DetailController">
+    <h2>Mortgage form</h2>
+    <form>
+        <input type="text" id="firstName" placeholder="First name" ng-model="mortgage.firstName">
+        <input type="text" id="lastName" placeholder="lastName" ng-model="mortgage.lastName">
+        <input type="text" id="nif" placeholder="NIF" ng-model="mortgage.nif">
+        <input type="number" id="age" placeholder="Age" ng-model="mortgage.age" min="18" max="80">
+        <input type="text" id="phone" placeholder="Phone number" ng-model="mortgage.phone">
+        <input type="text" id="email" placeholder="Email" ng-model="mortgage.email">
+        <input type="text" id="salary" placeholder="Monthly salary" ng-model="mortgage.salary">
+        <hr>
+        <input type="text" id="capital" placeholder="Capital" ng-model="mortgage.capital">
+        Fix interest: <input type="radio" id="interestTypeFixed" name="interestType" ng-model="mortgage.interestType" value="fixed">
+        Variable interest: <input type="radio" id="interestTypeVariable" name="interestType" ng-model="mortgage.interestType" value="variable">
+        <br>
+        Euribor: <input type="radio" id="euriborTypeEuribor" name="euriborType" ng-model="mortgage.euriborType" value="euribor" ng-disabled="mortgage.interestType !== 'variable'" ng-change="changeEuribor()">
+        Euribor3: <input type="radio" id="euriborTypeEuribor3" name="euriborType" ng-model="mortgage.euriborType" value="euribor3" ng-disabled="mortgage.interestType !== 'variable'" ng-change="changeEuribor()">
+        <br>
+        <input type="text" id="euribor" placeholder="Euribor" ng-model="mortgage.euribor" ng-disabled="mortgage.interestType !== 'variable'">
+        <input type="text" id="differential" placeholder="Differential" ng-model="mortgage.differential" ng-disabled="mortgage.interestType !== 'variable'">
+        <input type="text" id="fixInterest" placeholder="Fix interest" ng-model="mortgage.fixInterest" ng-disabled="mortgage.interestType !== 'fixed'">
+        <input type="number" id="installments" placeholder="Installments (Years)" ng-model="mortgage.installments" max="50">
+        <hr>
+        House insurance: <input type="checkbox" id="houseInsurance" ng-model="mortgage.houseInsurance">
+        Salary insurance: <input type="checkbox" id="salaryInsurance" ng-model="mortgage.salaryInsurance">
+        Life insurance: <input type="checkbox" id="lifeInsurance" ng-model="mortgage.lifeInsurance">
+        <hr>
+        Monthly fee: <input type="text" id="fee" placeholder="Monthly fee" ng-model="mortgage.fee" ng-disabled="true">
+        Rate: <input type="text" id="rate" placeholder="Rate" ng-model="mortgage.rate" ng-disabled="true">
+        <hr>
+        <button ng-click="calculateMortgage()">Calculate</button>
+    </form>
+</body>
+
+</html>
