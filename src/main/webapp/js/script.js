@@ -1,5 +1,6 @@
 var app=angular.module("myApp",[]);
 
+//Value services (app.value(....)) are used in the same way as app.constant but they cannot be injected in config and providers
 app.constant("titles","Seguro Médico");
 app.constant("maths", {
     //This is an example of constant, not used in the application
