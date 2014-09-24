@@ -1,7 +1,25 @@
 var app=angular.module("myApp",[]);
 
+app.constant("titles","Seguro Médico");
+app.constant("maths", {
+    //This is an example of constant, not used in the application
+   add:function(a, b){
+       return a + b;
+   },
+   substract: function(a, b){
+       return a - b;
+   }
+    //Use after injection: maths.add(1,2)
+});
+app.constant("area",function(radio) {
+    //This is an example of constant, not used in the application
+    return 3.1416*radio*radio;
+    //Use after injection: area(3)
+})
+
 //['$scope', '$log',function($scope, $log)....] needed because minimize will change to function(a, b) and Angular need to know the name of the service
-app.controller('SeguroController', ['$scope', '$log', '$http', function($scope, $log, $http) {
+app.controller('SeguroController', ['$scope', '$log', '$http', 'titles', function($scope, $log, $http, titles) {
+    $scope.title = titles;
 	$scope.seguro={
 	    nif:"",
 	    nombre:"",
