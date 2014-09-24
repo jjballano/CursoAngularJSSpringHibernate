@@ -54,3 +54,27 @@ app.controller('SeguroController', ['$scope', '$log', '$http', 'titles', functio
         alert("Ha fallado la petición. Estado HTTP:"+status);
     });
 }]);
+
+function Rectangulo(inicial) {
+    this.ancho = inicial.ancho;
+    this.alto = inicial.alto;
+
+    this.setAncho = function(ancho){
+        this.ancho = ancho;
+    }
+
+    this.setAlto=function(alto) {
+        this.alto=alto;
+    }
+
+    this.getArea=function(){
+        return this.alto*this.ancho;
+    }
+}
+
+app.value("tamanyoInicialCuadrado",{
+    ancho:2,
+    alto: 2
+});
+
+app.service("cuadrado",['tamanyoInicialCuadrado',Rectangulo]);
