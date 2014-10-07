@@ -45,7 +45,8 @@ app.controller('SeguroController', ['$scope', '$log', '$http', 'titles', functio
 	    }
 	}
     $log.debug("Acabamos de crear el $scope");
-    var initData = $http({
+    //$http should be wrapped by another service created by us
+    $http({
         method: 'GET',
         url: './data.json'
     }).success(function(data, status, headers, config){
@@ -76,5 +77,45 @@ app.value("tamanyoInicialCuadrado",{
     ancho:2,
     alto: 2
 });
-
+//Value is always instantiated, service only if it's used
 app.service("cuadrado",['tamanyoInicialCuadrado',Rectangulo]);
+
+app.factory("math_operations",function() {
+    return {
+        add:function(a,b) {
+            return a+b;
+        },
+        substract:function(a,b) {
+            return a-b;
+        }
+    }
+});
+
+app.factory("hash",['algoritmo',function(algoritmo) {
+    // previously we have app.value("algoritmo","SHA-1");
+    var hashFunction;
+
+    if (algoritmo==="MD5") {
+        hashFunction=CryptoJS.MD5;
+    } else  if (algoritmo==="SHA-1") {
+        hashFunction=CryptoJS.SHA1;
+    } else  if (algoritmo==="SHA-2-256") {
+        hashFunction=CryptoJS.SHA256;
+    } else  if (algoritmo==="SHA-2-512") {
+        hashFunction=CryptoJS.SHA512;
+    } else {
+        throw Error("El tipo de algoritmo no es válido:"+algoritmo);
+    }
+
+    var hash=function(message) {
+        var objHashResult=hashFunction(message);
+
+        var strHashResult=objHashResult.toString(CryptoJS.enc.Base64);
+
+        return strHashResult;
+    }
+
+    return hash;
+    //Use this factory after be injected:
+    // hash(message)
+}]);
